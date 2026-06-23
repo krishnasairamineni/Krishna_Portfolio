@@ -1,4 +1,4 @@
-import {
+﻿import {
   ArrowDownToLine,
   ArrowRight,
   Blocks,
@@ -203,7 +203,14 @@ function Hero() {
         <Reveal className="relative min-h-[480px]" delay={180}>
           <div className="drift-orb absolute left-4 top-8 h-72 w-72 rounded-full bg-mint/25 blur-3xl" />
           <div className="drift-orb drift-orb-alt absolute bottom-8 right-4 h-80 w-80 rounded-full bg-citrus/30 blur-3xl" />
-          <div className="relative mx-auto grid max-w-[540px] grid-cols-2 gap-4 sm:gap-5">
+          <div className="relative mx-auto grid max-w-[560px] grid-cols-2 gap-4 sm:gap-5">
+            <div className="shine-card group col-span-2 overflow-hidden rounded-md border border-white/80 bg-white/80 p-2 shadow-glow backdrop-blur">
+              <img
+                src="/assets/digital-solutions-studio.png"
+                alt="Digital solutions studio workspace with web dashboards and code interfaces"
+                className="h-56 w-full rounded object-cover transition duration-700 group-hover:scale-105 sm:h-64"
+              />
+            </div>
             {floatingCards.map((card, index) => {
               const Icon = iconMap[card.icon];
               return (
@@ -399,6 +406,13 @@ function Capabilities() {
           I can plug into a team as the person who understands both the visible website and the
           technical systems behind it.
         </SectionHeading>
+        <Reveal className="mb-10 overflow-hidden rounded-md border border-slate-200 bg-cloud p-2 shadow-card">
+          <img
+            src="/assets/website-support-systems.png"
+            alt="Website support systems with dashboards, responsive layouts, API connections, and secure web tools"
+            className="h-72 w-full rounded object-cover sm:h-80 lg:h-96"
+          />
+        </Reveal>
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {capabilities.map((item, index) => (
             <Reveal key={item.title} delay={index * 90} className="rounded-md border border-slate-200 bg-cloud p-6 transition hover:-translate-y-2 hover:shadow-card">
@@ -485,7 +499,7 @@ function Footer() {
   return (
     <footer className="bg-ink py-10 text-white">
       <div className="section-shell flex flex-col gap-5 text-sm md:flex-row md:items-center md:justify-between">
-        <p className="font-semibold">� 2026 Krishna. Website & Digital Solutions Developer.</p>
+        <p className="font-semibold">© 2026 Krishna. Website & Digital Solutions Developer.</p>
         <div className="flex items-center gap-4 text-white/70">
           <a href={`mailto:${contact.email}`} className="focus-ring rounded-md hover:text-white" aria-label="Email Krishna">
             <Mail size={20} />
@@ -521,3 +535,4 @@ export default function App() {
     </>
   );
 }
+
