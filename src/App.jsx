@@ -240,11 +240,20 @@ function About() {
   return (
     <section id="about" className="bg-white py-24">
       <div className="section-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-        <SectionHeading eyebrow="About" title="Developer craft with support-team reliability.">
-          I combine hands-on website development with the practical systems thinking businesses need
-          after launch: performance-minded updates, secure access, clear documentation, reliable
-          troubleshooting, and fast communication.
-        </SectionHeading>
+        <div>
+          <SectionHeading eyebrow="About" title="Developer craft with support-team reliability.">
+            I combine hands-on website development with the practical systems thinking businesses need
+            after launch: performance-minded updates, secure access, clear documentation, reliable
+            troubleshooting, and fast communication.
+          </SectionHeading>
+          <Reveal className="shine-card group overflow-hidden rounded-md border border-slate-200 bg-cloud p-2 shadow-card">
+            <img
+              src="/assets/krishna-profile.jpg"
+              alt="Krishna, Website and Digital Solutions Developer"
+              className="h-[420px] w-full rounded object-cover object-[center_32%] transition duration-700 group-hover:scale-105"
+            />
+          </Reveal>
+        </div>
         <div className="grid gap-5 sm:grid-cols-2">
           {[
             ['Studio-style execution', 'Modern responsive pages, support workflows, and reusable front-end patterns.'],
