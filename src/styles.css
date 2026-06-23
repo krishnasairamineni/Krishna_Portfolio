@@ -37,8 +37,136 @@ body {
 
 .gradient-text {
   @apply bg-gradient-to-r from-field via-coral to-mint bg-clip-text text-transparent;
+  background-size: 220% 220%;
+  animation: gradientShift 7s ease-in-out infinite;
 }
 
 .focus-ring {
   @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-coral;
+}
+
+.hero-wash {
+  background-size: 140% 140%;
+  animation: backgroundDrift 18s ease-in-out infinite alternate;
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(15, 45, 58, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 45, 58, 0.08) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.62), transparent 74%);
+  animation: gridSlide 22s linear infinite;
+}
+
+.hero-copy {
+  animation: heroLift 900ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 700ms ease,
+    transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.shine-card,
+.action-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-card::after,
+.action-button::after {
+  content: "";
+  position: absolute;
+  inset: -40% auto -40% -70%;
+  width: 48%;
+  transform: skewX(-18deg);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  transition: left 650ms ease;
+  pointer-events: none;
+}
+
+.shine-card:hover::after,
+.action-button:hover::after {
+  left: 122%;
+}
+
+.drift-orb {
+  animation: orbDrift 12s ease-in-out infinite alternate;
+}
+
+.drift-orb-alt {
+  animation-delay: -4s;
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes backgroundDrift {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes gridSlide {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 84px 84px;
+  }
+}
+
+@keyframes heroLift {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes orbDrift {
+  from {
+    transform: translate3d(-12px, 10px, 0) scale(0.98);
+  }
+  to {
+    transform: translate3d(18px, -16px, 0) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
