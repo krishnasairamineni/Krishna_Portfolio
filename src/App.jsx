@@ -19,7 +19,7 @@ import {
   Wrench,
   X,
 } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   capabilities,
   contact,
@@ -42,9 +42,42 @@ const iconMap = {
   BriefcaseBusiness,
 };
 
+function Reveal({ children, className = '', delay = 0 }) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.18 },
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      style={{ transitionDelay: `${delay}ms` }}
+      className={`reveal ${visible ? 'reveal-visible' : ''} ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
 function SectionHeading({ eyebrow, title, children, align = 'left', dark = false }) {
   return (
-    <div className={`mb-10 max-w-3xl ${align === 'center' ? 'mx-auto text-center' : ''}`}>
+    <Reveal className={`mb-10 max-w-3xl ${align === 'center' ? 'mx-auto text-center' : ''}`}>
       <p className="eyebrow">{eyebrow}</p>
       <h2 className={`mt-3 font-display text-3xl font-extrabold leading-tight sm:text-4xl ${dark ? 'text-white' : 'text-ink'}`}>
         {title}
@@ -54,7 +87,7 @@ function SectionHeading({ eyebrow, title, children, align = 'left', dark = false
           {children}
         </p>
       )}
-    </div>
+    </Reveal>
   );
 }
 
@@ -88,7 +121,7 @@ function Navbar() {
 
         <a
           href="#contact"
-          className="focus-ring hidden rounded-md bg-ink px-4 py-2.5 text-sm font-bold text-white shadow-card transition hover:-translate-y-0.5 hover:bg-field md:inline-flex"
+          className="focus-ring action-button hidden rounded-md bg-ink px-4 py-2.5 text-sm font-bold text-white shadow-card transition hover:-translate-y-0.5 hover:bg-field md:inline-flex"
         >
           Start a conversation
         </a>
@@ -127,9 +160,10 @@ function Navbar() {
 function Hero() {
   return (
     <section id="home" className="relative overflow-hidden bg-cloud pt-32">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(98,195,165,0.26),transparent_28%),radial-gradient(circle_at_82%_10%,rgba(232,93,117,0.22),transparent_28%),linear-gradient(135deg,#f8fbfc_0%,#eef8f5_46%,#fff7e8_100%)]" />
+      <div className="hero-wash absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(98,195,165,0.26),transparent_28%),radial-gradient(circle_at_82%_10%,rgba(232,93,117,0.22),transparent_28%),linear-gradient(135deg,#f8fbfc_0%,#eef8f5_46%,#fff7e8_100%)]" />
+      <div className="hero-grid absolute inset-0 opacity-45" />
       <div className="section-shell relative grid min-h-[calc(100vh-5rem)] items-center gap-14 pb-16 lg:grid-cols-[1.03fr_0.97fr]">
-        <div>
+        <Reveal className="hero-copy">
           <p className="eyebrow">Portfolio / Web Support / Digital Systems</p>
           <h1 className="mt-5 font-display text-5xl font-extrabold leading-[1.02] text-ink sm:text-6xl lg:text-7xl">
             <span className="gradient-text">Krishna</span>
@@ -146,14 +180,14 @@ function Hero() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
               href="#projects"
-              className="focus-ring inline-flex items-center justify-center gap-2 rounded-md bg-field px-5 py-3 font-bold text-white shadow-card transition hover:-translate-y-1 hover:bg-ink"
+              className="focus-ring action-button inline-flex items-center justify-center gap-2 rounded-md bg-field px-5 py-3 font-bold text-white shadow-card transition hover:-translate-y-1 hover:bg-ink"
             >
               View Projects <ArrowRight size={18} />
             </a>
             <a
               href="/Krishna_Web_Developer_Resume.pdf"
               download
-              className="focus-ring inline-flex items-center justify-center gap-2 rounded-md bg-white px-5 py-3 font-bold text-field shadow-card transition hover:-translate-y-1"
+              className="focus-ring action-button inline-flex items-center justify-center gap-2 rounded-md bg-white px-5 py-3 font-bold text-field shadow-card transition hover:-translate-y-1"
             >
               Download Resume <ArrowDownToLine size={18} />
             </a>
@@ -164,18 +198,19 @@ function Hero() {
               Contact Me <Mail size={18} />
             </a>
           </div>
-        </div>
+        </Reveal>
 
-        <div className="relative min-h-[480px]">
-          <div className="absolute left-4 top-8 h-72 w-72 rounded-full bg-mint/25 blur-3xl" />
-          <div className="absolute bottom-8 right-4 h-80 w-80 rounded-full bg-citrus/30 blur-3xl" />
+        <Reveal className="relative min-h-[480px]" delay={180}>
+          <div className="drift-orb absolute left-4 top-8 h-72 w-72 rounded-full bg-mint/25 blur-3xl" />
+          <div className="drift-orb drift-orb-alt absolute bottom-8 right-4 h-80 w-80 rounded-full bg-citrus/30 blur-3xl" />
           <div className="relative mx-auto grid max-w-[540px] grid-cols-2 gap-4 sm:gap-5">
             {floatingCards.map((card, index) => {
               const Icon = iconMap[card.icon];
               return (
                 <div
                   key={card.title}
-                  className={`rounded-md border border-white/80 bg-white/82 p-5 shadow-glow backdrop-blur transition hover:-translate-y-2 hover:bg-white ${
+                  style={{ animationDelay: `${index * 140}ms` }}
+                  className={`shine-card rounded-md border border-white/80 bg-white/82 p-5 shadow-glow backdrop-blur transition hover:-translate-y-2 hover:bg-white ${
                     index % 2 === 0 ? 'animate-float' : 'animate-float-slow'
                   } ${index === 1 || index === 4 ? 'translate-y-8' : ''}`}
                 >
@@ -188,7 +223,7 @@ function Hero() {
               );
             })}
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -209,12 +244,12 @@ function About() {
             ['Business systems focus', 'SQL dashboards, portals, reporting flows, and small-business operational tooling.'],
             ['Security aware', 'SSL/TLS, authentication, hosting access, SSH, firewalls, and careful maintenance habits.'],
             ['Marketing friendly', 'SEO-ready page updates, WordPress content, social support, and stakeholder clarity.'],
-          ].map(([title, copy]) => (
-            <div key={title} className="rounded-md border border-slate-200 bg-cloud p-6">
+          ].map(([title, copy], index) => (
+            <Reveal key={title} delay={index * 90} className="rounded-md border border-slate-200 bg-cloud p-6">
               <CheckCircle2 className="text-mint" size={24} />
               <h3 className="mt-4 font-display text-lg font-extrabold text-ink">{title}</h3>
               <p className="mt-2 text-sm leading-6 text-slate-600">{copy}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -231,18 +266,19 @@ function Services() {
           safer, and easier to operate.
         </SectionHeading>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          {services.map((service) => {
+          {services.map((service, index) => {
             const Icon = iconMap[service.icon];
             return (
-              <article
+              <Reveal
                 key={service.title}
-                className="group rounded-md border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-2 hover:border-mint hover:shadow-card"
+                delay={index * 55}
+                className="shine-card group rounded-md border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-2 hover:border-mint hover:shadow-card"
               >
                 <div className="grid h-11 w-11 place-items-center rounded-md bg-field/8 text-field transition group-hover:bg-field group-hover:text-white">
                   <Icon size={22} />
                 </div>
                 <h3 className="mt-4 text-base font-extrabold text-ink">{service.title}</h3>
-              </article>
+              </Reveal>
             );
           })}
         </div>
@@ -257,8 +293,8 @@ function Skills() {
       <div className="section-shell">
         <SectionHeading eyebrow="Skills" title="Full-stack range for websites, data, CMS, and hosting." />
         <div className="grid gap-5 lg:grid-cols-2">
-          {skills.map((group) => (
-            <article key={group.category} className="rounded-md border border-slate-200 bg-cloud p-6">
+          {skills.map((group, index) => (
+            <Reveal key={group.category} delay={index * 80} className="rounded-md border border-slate-200 bg-cloud p-6">
               <h3 className="font-display text-xl font-extrabold text-ink">{group.category}</h3>
               <div className="mt-5 flex flex-wrap gap-2">
                 {group.items.map((item) => (
@@ -270,7 +306,7 @@ function Skills() {
                   </span>
                 ))}
               </div>
-            </article>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -289,8 +325,8 @@ function Experience() {
         <div className="relative">
           <div className="absolute bottom-0 left-4 top-0 hidden w-px bg-white/20 md:block" />
           <div className="grid gap-5">
-            {experience.map((role) => (
-              <article key={`${role.company}-${role.period}`} className="relative md:pl-12">
+            {experience.map((role, index) => (
+              <Reveal key={`${role.company}-${role.period}`} delay={index * 85} className="relative md:pl-12">
                 <div className="absolute left-2 top-7 hidden h-5 w-5 rounded-full border-4 border-ink bg-citrus md:block" />
                 <div className="rounded-md border border-white/10 bg-white/7 p-6 backdrop-blur transition hover:-translate-y-1 hover:bg-white/10">
                   <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
@@ -304,7 +340,7 @@ function Experience() {
                     </div>
                   </div>
                 </div>
-              </article>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -322,10 +358,11 @@ function Projects() {
           friction for staff, customers, and stakeholders.
         </SectionHeading>
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {projects.map((project) => (
-            <article
+          {projects.map((project, index) => (
+            <Reveal
               key={project.title}
-              className="group flex min-h-[360px] flex-col rounded-md border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-2 hover:border-coral hover:shadow-card"
+              delay={index * 85}
+              className="shine-card group flex min-h-[360px] flex-col rounded-md border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-2 hover:border-coral hover:shadow-card"
             >
               <div className="mb-5 flex items-center justify-between">
                 <span className="rounded-md bg-field px-3 py-1 text-xs font-extrabold uppercase tracking-[0.16em] text-white">
@@ -346,7 +383,7 @@ function Projects() {
                 <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-coral">Business value</p>
                 <p className="mt-2 text-sm font-semibold leading-6 text-ink">{project.value}</p>
               </div>
-            </article>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -363,12 +400,12 @@ function Capabilities() {
           technical systems behind it.
         </SectionHeading>
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {capabilities.map((item) => (
-            <article key={item.title} className="rounded-md border border-slate-200 bg-cloud p-6 transition hover:-translate-y-2 hover:shadow-card">
+          {capabilities.map((item, index) => (
+            <Reveal key={item.title} delay={index * 90} className="rounded-md border border-slate-200 bg-cloud p-6 transition hover:-translate-y-2 hover:shadow-card">
               <div className="mb-6 h-1.5 w-20 origin-left rounded-full bg-coral animate-pulseLine" />
               <h3 className="font-display text-xl font-extrabold text-ink">{item.title}</h3>
               <p className="mt-3 text-sm leading-6 text-slate-600">{item.copy}</p>
-            </article>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -391,7 +428,7 @@ function Resume() {
         <a
           href="/Krishna_Web_Developer_Resume.pdf"
           download
-          className="focus-ring inline-flex items-center justify-center gap-2 rounded-md bg-white px-5 py-3 font-extrabold text-field shadow-card transition hover:-translate-y-1"
+          className="focus-ring action-button inline-flex items-center justify-center gap-2 rounded-md bg-white px-5 py-3 font-extrabold text-field shadow-card transition hover:-translate-y-1"
         >
           Download Resume <ArrowDownToLine size={18} />
         </a>
@@ -404,7 +441,7 @@ function Contact() {
   return (
     <section id="contact" className="bg-cloud py-24">
       <div className="section-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-        <SectionHeading eyebrow="Contact" title="Let’s build, fix, or improve the web system your team depends on.">
+        <SectionHeading eyebrow="Contact" title="Let's build, fix, or improve the web system your team depends on.">
           Available for web developer, website support, PHP developer, WordPress support, digital
           solutions, small-business website support, and digital marketing support roles.
         </SectionHeading>
@@ -434,7 +471,7 @@ function Contact() {
           </div>
           <a
             href={`mailto:${contact.email}?subject=Portfolio%20Inquiry%20for%20Krishna`}
-            className="focus-ring mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md bg-ink px-5 py-3 font-extrabold text-white transition hover:-translate-y-1 hover:bg-field"
+            className="focus-ring action-button mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md bg-ink px-5 py-3 font-extrabold text-white transition hover:-translate-y-1 hover:bg-field"
           >
             Send a Message <MessageCircle size={18} />
           </a>
@@ -448,7 +485,7 @@ function Footer() {
   return (
     <footer className="bg-ink py-10 text-white">
       <div className="section-shell flex flex-col gap-5 text-sm md:flex-row md:items-center md:justify-between">
-        <p className="font-semibold">© 2026 Krishna. Website & Digital Solutions Developer.</p>
+        <p className="font-semibold">� 2026 Krishna. Website & Digital Solutions Developer.</p>
         <div className="flex items-center gap-4 text-white/70">
           <a href={`mailto:${contact.email}`} className="focus-ring rounded-md hover:text-white" aria-label="Email Krishna">
             <Mail size={20} />
