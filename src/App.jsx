@@ -246,11 +246,11 @@ function About() {
             after launch: performance-minded updates, secure access, clear documentation, reliable
             troubleshooting, and fast communication.
           </SectionHeading>
-          <Reveal className="shine-card group overflow-hidden rounded-md border border-slate-200 bg-[radial-gradient(circle_at_50%_20%,rgba(98,195,165,0.34),transparent_34%),linear-gradient(145deg,#0f2d3a,#101828)] p-2 shadow-card">
+          <Reveal className="group flex justify-center lg:justify-start">
             <img
               src="/assets/krishna-profile-transparent.png"
               alt="Krishna, Website and Digital Solutions Developer"
-              className="h-[440px] w-full rounded object-contain object-bottom drop-shadow-2xl transition duration-700 group-hover:scale-105"
+              className="max-h-[520px] w-auto max-w-full object-contain object-bottom drop-shadow-2xl transition duration-700 group-hover:scale-[1.03]"
             />
           </Reveal>
         </div>
