@@ -7,22 +7,21 @@ export const contact = {
 export const navItems = [
   { label: 'About', href: '#about' },
   { label: 'Services', href: '#services' },
-  { label: 'Skills', href: '#skills' },
+  { label: 'Tools', href: '#tools' },
   { label: 'Experience', href: '#experience' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Support', href: '#support' },
+  { label: 'Website Work', href: '#freelance' },
   { label: 'Contact', href: '#contact' },
 ];
 
 export const floatingCards = [
   {
-    title: 'Responsive Websites',
-    copy: 'Fast, accessible layouts that adapt cleanly across devices.',
+    title: 'Responsive Builds',
+    copy: 'Clean pages, landing experiences, and content sections built for mobile-first visitors.',
     icon: 'Globe2',
   },
   {
-    title: 'WordPress / Avada',
-    copy: 'Support for page updates, theme workflows, and content changes.',
+    title: 'WordPress CMS',
+    copy: 'Page builders, theme settings, forms, menus, media, and content maintenance.',
     icon: 'Blocks',
   },
   {
@@ -41,8 +40,8 @@ export const floatingCards = [
     icon: 'ServerCog',
   },
   {
-    title: 'Digital Content',
-    copy: 'SEO-ready updates and web content support for marketing teams.',
+    title: 'Marketing Support',
+    copy: 'SEO-ready content updates, campaign pages, QA, and stakeholder-friendly handoff.',
     icon: 'Sparkles',
   },
 ];
@@ -50,14 +49,14 @@ export const floatingCards = [
 export const services = [
   { title: 'Responsive Website Development', icon: 'Globe2' },
   { title: 'Landing Pages & Business Pages', icon: 'Sparkles' },
-  { title: 'WordPress / Avada Website Support', icon: 'Blocks' },
+  { title: 'WordPress Builder & CMS Support', icon: 'Blocks' },
   { title: 'PHP & JavaScript Web Applications', icon: 'ServerCog' },
   { title: 'SQL Reporting & Dashboards', icon: 'Database' },
   { title: 'Website Troubleshooting & Maintenance', icon: 'Wrench' },
-  { title: 'SEO-Ready Page Updates', icon: 'Sparkles' },
+  { title: 'SEO-Ready Content & Metadata Updates', icon: 'Sparkles' },
   { title: 'Secure Hosting & Access Support', icon: 'ShieldCheck' },
-  { title: 'Digital Content & Social Media Support', icon: 'BriefcaseBusiness' },
-  { title: 'API Integrations', icon: 'ServerCog' },
+  { title: 'Forms, Menus, Media & Content QA', icon: 'BriefcaseBusiness' },
+  { title: 'API, CRM & Tracking Handoff Support', icon: 'ServerCog' },
 ];
 
 export const skills = [
@@ -93,8 +92,29 @@ export const skills = [
     items: [
       'WordPress',
       'Avada',
+      'Avada Builder',
+      'Elementor',
+      'Divi',
+      'WPBakery',
+      'Fusion Builder',
+      'Theme Options',
+      'Menus',
+      'Widgets',
+      'WooCommerce Basics',
+      'Forms',
+      'Contact Form 7',
+      'Gravity Forms',
+      'Media Library',
       'Website Content Updates',
       'SEO Basics',
+      'Yoast SEO',
+      'Rank Math',
+      'Meta Titles',
+      'Page Speed Awareness',
+      'Google Analytics',
+      'Google Search Console',
+      'Google Tag Manager',
+      'Google Business Profile Support',
       'Social Media Support',
       'Digital Content',
     ],
@@ -127,6 +147,29 @@ export const skills = [
       'VB Scripting',
       'Bash',
     ],
+  },
+];
+
+export const wordpressTools = [
+  {
+    title: 'WordPress Builder Production',
+    copy: 'Page edits, builder sections, headers, footers, forms, menus, media cleanup, and reusable content blocks.',
+    items: ['Avada', 'Elementor', 'Divi', 'WPBakery'],
+  },
+  {
+    title: 'Marketing Page Readiness',
+    copy: 'Landing-page updates, calls-to-action, service pages, location pages, image replacement, and SEO-friendly copy structure.',
+    items: ['Landing Pages', 'CTAs', 'Yoast SEO', 'Rank Math'],
+  },
+  {
+    title: 'Forms, Tracking & Content QA',
+    copy: 'Form checks, submission flow review, tracking handoff, image replacement, page QA, and stakeholder-ready notes.',
+    items: ['Contact Form 7', 'Gravity Forms', 'Analytics', 'Search Console'],
+  },
+  {
+    title: 'Technical Back-End Support',
+    copy: 'PHP troubleshooting, SQL-backed reporting, hosting access, SSL, redirects, form delivery, and safe maintenance habits.',
+    items: ['PHP', 'MySQL', 'SSL', 'Hosting Access'],
   },
 ];
 
@@ -177,46 +220,164 @@ export const experience = [
 
 export const projects = [
   {
-    title: 'Enterprise Web Portal and E-Commerce Support',
+    title: 'Requirement Clarity Before Build',
     description:
-      'Supported portal features, web workflows, and e-commerce touchpoints for internal users and customer-facing needs.',
-    technologies: ['PHP', 'JavaScript', 'HTML/CSS', 'SQL', 'Web Portals'],
-    value: 'Improved reliability for business-critical web operations and daily stakeholder workflows.',
+      'I turn loose requests into clear page goals, content needs, access questions, priority lists, and realistic next steps.',
+    technologies: ['Client Calls', 'Scope Notes', 'Content Needs', 'Priorities'],
+    value: 'Marketing teams get fewer surprises because the work starts with decisions, not assumptions.',
   },
   {
-    title: 'Operational Dashboards and Web Reporting',
+    title: 'Small-Business Website Execution',
     description:
-      'Built SQL-backed reporting screens and dashboard views that helped teams monitor activity and business data.',
-    technologies: ['SQL', 'MySQL', 'Microsoft SQL Server', 'PHP', 'Dashboards'],
-    value: 'Made operational information easier to find, understand, and act on.',
+      'I can take rough content, an outdated section, or a broken layout and make it work cleanly across desktop and mobile.',
+    technologies: ['Responsive Layouts', 'Landing Pages', 'WordPress', 'HTML/CSS'],
+    value: 'Business owners get a website that supports calls, forms, visits, and clear service discovery.',
   },
   {
-    title: 'Integrated Library System Support',
+    title: 'Technical Problem Solving',
     description:
-      'Assisted web-connected library system workflows with data, access, and interface support.',
-    technologies: ['SQL', 'Web Systems', 'Reporting', 'Access Support'],
-    value: 'Reduced friction for staff workflows and helped maintain dependable user access.',
+      'I troubleshoot layout bugs, WordPress issues, PHP errors, hosting/access problems, forms, and database-backed workflows.',
+    technologies: ['PHP', 'JavaScript', 'SQL', 'Hosting', 'Debugging'],
+    value: 'Teams can rely on me when a website issue needs to be fixed, explained, or handed off clearly.',
   },
   {
-    title: 'WordPress / Avada Website Support',
+    title: 'WordPress CMS Support',
     description:
-      'Updated pages, adjusted layouts, managed website content, and supported Avada-based WordPress experiences.',
-    technologies: ['WordPress', 'Avada', 'HTML/CSS', 'SEO Basics'],
-    value: 'Kept small-business pages current, polished, and easier for visitors to navigate.',
+      'I handle builder-based page edits, theme settings, content changes, SEO-ready metadata, media cleanup, forms, and QA.',
+    technologies: ['WordPress', 'Avada', 'Elementor', 'SEO Basics'],
+    value: 'Marketing teams can move faster without turning every content update into a development bottleneck.',
   },
   {
-    title: 'Small Business Web and Social Media Support',
+    title: 'Communication With Non-Technical Clients',
     description:
-      'Provided practical website, content, and digital presence support for local business needs.',
-    technologies: ['Landing Pages', 'Digital Content', 'Social Media', 'WordPress'],
-    value: 'Helped businesses present clear services online and maintain consistent digital updates.',
+      'I explain options in simple language, give realistic timelines, and keep stakeholders updated while work is moving.',
+    technologies: ['Status Updates', 'Plain English', 'Documentation', 'Follow-up'],
+    value: 'Clients know what is happening, what I need from them, and what will be delivered next.',
   },
   {
-    title: 'Secure PHP Contact Form and SQL Dashboard',
+    title: 'Secure, Maintainable Web Systems',
     description:
-      'Created secure form handling and a dashboard concept for managing submitted business inquiries.',
-    technologies: ['PHP', 'JavaScript', 'MySQL', 'Authentication', 'SSL/TLS'],
-    value: 'Turned website inquiries into organized, trackable records with security-aware handling.',
+      'I think beyond the page: form handling, databases, access, SSL, authentication, hosting, and long-term maintainability.',
+    technologies: ['Secure Forms', 'MySQL', 'SSL/TLS', 'Authentication'],
+    value: 'The work is easier to support after launch because access, structure, and handoff are considered early.',
+  },
+];
+
+export const clientWorkflow = [
+  {
+    step: '01',
+    title: 'Listen to the business problem',
+    copy: 'I start by understanding what the owner or team is trying to improve: more calls, clearer services, easier updates, better forms, or a cleaner online presence.',
+  },
+  {
+    step: '02',
+    title: 'Turn the conversation into a clear plan',
+    copy: 'I organize the request into pages, features, content needs, access requirements, timeline, and realistic priorities so everyone knows what will happen next.',
+  },
+  {
+    step: '03',
+    title: 'Build, explain, and adjust',
+    copy: 'I share progress in simple language, explain tradeoffs, make revisions from feedback, and keep the website aligned with what the client actually needs.',
+  },
+  {
+    step: '04',
+    title: 'Support after delivery',
+    copy: 'I help with fixes, content changes, troubleshooting, hosting/access questions, SEO-ready updates, and practical maintenance after launch.',
+  },
+];
+
+export const freelanceWebsites = [
+  {
+    title: 'Sangam Chettinad',
+    type: 'Restaurant website support',
+    url: 'https://www.sangamchettinad.com/',
+    logo: '/assets/sangam-chettinad-logo.png',
+    description:
+      'Worked on website support for a live restaurant business so the site stayed useful, updated, and customer friendly.',
+    stack: ['WordPress', 'Avada', 'Content Updates', 'Responsive'],
+    value: 'Helped keep the website current, professional, and easier for customers to use when checking the restaurant online.',
+    visual: 'restaurant',
+  },
+  {
+    title: 'Delhi Palace Flagstaff',
+    type: 'Restaurant website support',
+    url: 'https://flagstaffdelhipalace.com/',
+    logo: '/assets/delhi-palace-logo.webp',
+    description:
+      'Worked on website support for a live restaurant website with focus on customer information, presentation, and online visibility.',
+    stack: ['WordPress', 'Restaurant Website', 'Content Support', 'Responsive'],
+    value: 'Shows experience supporting live small-business restaurant websites with customer-facing information and online visibility.',
+    visual: 'restaurant',
+  },
+  {
+    title: 'VisionSoft',
+    type: 'Technology company website',
+    url: 'https://visionsoft.com/',
+    logo: '/assets/visionsoft-logo.jpg',
+    description: 'Technology company website listing with official brand logo.',
+    stack: ['Website Support', 'Business Website', 'Content', 'Responsive'],
+    value: 'Live business website added to the portfolio grid.',
+    visual: 'technology',
+  },
+  {
+    title: 'NM Construction & Interiors',
+    type: 'Construction and interiors website',
+    url: 'https://nmconstructionandinteriors.com/',
+    logo: '/assets/nm-construction-logo-full.png',
+    description: 'Construction and interiors website listed with official brand mark.',
+    stack: ['Business Website', 'Construction', 'Interior Design', 'Responsive'],
+    value: 'Live construction and interiors website added to the portfolio grid.',
+    visual: 'construction',
+  },
+  {
+    title: 'Smart Vision Eye Hospitals',
+    type: 'Healthcare website',
+    url: 'https://www.smartvisioneyehospitals.com/',
+    logo: '/assets/smartvision-logo.png',
+    description: 'Healthcare website listed with official brand logo.',
+    stack: ['Healthcare Website', 'Business Website', 'Content', 'Responsive'],
+    value: 'Live healthcare website added to the portfolio grid.',
+    visual: 'healthcare',
+  },
+  {
+    title: 'Vijaya Durga Nursery Gardens',
+    type: 'Nursery gardens website',
+    url: 'https://vijayadurganurserygardens.com/',
+    logo: '/assets/vijaya-durga-logo.png',
+    description: 'Nursery gardens website listed with official brand logo.',
+    stack: ['Business Website', 'Nursery', 'Gallery', 'Responsive'],
+    value: 'Live nursery gardens website added to the portfolio grid.',
+    visual: 'nursery',
+  },
+  {
+    title: 'Gudlavalleru Engineering College',
+    type: 'College website',
+    url: 'https://gecgudlavalleru.ac.in/',
+    logo: '/assets/gec-gudlavalleru-logo.jpeg',
+    description: 'College website listed with official institution logo.',
+    stack: ['Education Website', 'Institution', 'Content', 'Responsive'],
+    value: 'Live college website added to the portfolio grid.',
+    visual: 'education',
+  },
+  {
+    title: 'EduXperts Abroad',
+    type: 'Education consultancy website',
+    url: 'https://www.eduxpertsabroad.com/',
+    logo: '/assets/eduxperts-logo.png',
+    description: 'Study abroad consultancy website listed with official brand logo.',
+    stack: ['Education Website', 'Consultancy', 'Wix', 'Responsive'],
+    value: 'Live education consultancy website added to the portfolio grid.',
+    visual: 'education-consulting',
+  },
+  {
+    title: 'Inside Mantra',
+    type: 'Interior design website',
+    url: 'https://insidemantra.com/',
+    logo: '/assets/insidemantra-logo-cropped.png',
+    description: 'Interior design website listed with official brand logo.',
+    stack: ['Interior Website', 'Business Website', 'Portfolio', 'Responsive'],
+    value: 'Live interior design website added to the portfolio grid.',
+    visual: 'interiors',
   },
 ];
 

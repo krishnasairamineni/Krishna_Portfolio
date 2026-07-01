@@ -22,13 +22,16 @@
 import { useEffect, useRef, useState } from 'react';
 import {
   capabilities,
+  clientWorkflow,
   contact,
   experience,
   floatingCards,
+  freelanceWebsites,
   navItems,
   projects,
   services,
   skills,
+  wordpressTools,
 } from './data/portfolioData';
 
 const iconMap = {
@@ -164,7 +167,7 @@ function Hero() {
       <div className="hero-grid absolute inset-0 opacity-45" />
       <div className="section-shell relative grid min-h-[calc(100vh-5rem)] items-center gap-14 pb-16 lg:grid-cols-[1.03fr_0.97fr]">
         <Reveal className="hero-copy">
-          <p className="eyebrow">Portfolio / Web Support / Digital Systems</p>
+          <p className="eyebrow">Web Development / CMS Support / Marketing Operations</p>
           <h1 className="mt-5 font-display text-5xl font-extrabold leading-[1.02] text-ink sm:text-6xl lg:text-7xl">
             <span className="gradient-text">Krishna</span>
           </h1>
@@ -173,16 +176,16 @@ function Hero() {
             PHP | JavaScript | HTML/CSS | SQL | WordPress | Secure Web Applications
           </p>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-            I build and maintain responsive websites, landing pages, web applications, dashboards,
-            portals, and SQL-backed business systems that help businesses stay organized, visible,
-            secure, and easy to work with online.
+            I build and support responsive websites, WordPress CMS pages, landing pages, portals,
+            dashboards, and SQL-backed systems for teams that need dependable execution, clear
+            communication, and practical website maintenance.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
-              href="#projects"
+              href="#freelance"
               className="focus-ring action-button inline-flex items-center justify-center gap-2 rounded-md bg-field px-5 py-3 font-bold text-white shadow-card transition hover:-translate-y-1 hover:bg-ink"
             >
-              View Projects <ArrowRight size={18} />
+              View Website Work <ArrowRight size={18} />
             </a>
             <a
               href="/Krishna_Web_Developer_Resume.pdf"
@@ -239,35 +242,39 @@ function Hero() {
 function About() {
   return (
     <section id="about" className="bg-white py-24">
-      <div className="section-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <div className="section-shell grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <div>
-          <SectionHeading eyebrow="About" title="Developer craft with support-team reliability.">
-            I combine hands-on website development with the practical systems thinking businesses need
-            after launch: performance-minded updates, secure access, clear documentation, reliable
-            troubleshooting, and fast communication.
+          <SectionHeading eyebrow="About" title="Website support that understands both code and marketing deadlines.">
+            I work best where websites need steady hands: page updates, WordPress support, bug fixes,
+            content changes, dashboards, forms, access, and communication with people who may not be technical.
           </SectionHeading>
-          <Reveal className="group flex justify-center lg:justify-start">
+          <div className="grid gap-5 sm:grid-cols-2">
+            {[
+              ['Production-ready updates', 'Responsive pages, CMS sections, forms, menus, and content edits with QA.'],
+              ['Business systems focus', 'SQL dashboards, portals, reporting flows, and small-business operational tooling.'],
+              ['Security aware', 'SSL/TLS, authentication, hosting access, SSH, firewalls, and careful maintenance habits.'],
+              ['Marketing friendly', 'SEO-ready page updates, landing pages, image swaps, copy changes, and stakeholder clarity.'],
+            ].map(([title, copy], index) => (
+              <Reveal key={title} delay={index * 90} className="rounded-md border border-slate-200 bg-cloud p-6">
+                <CheckCircle2 className="text-mint" size={24} />
+                <h3 className="mt-4 font-display text-lg font-extrabold text-ink">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{copy}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+        <Reveal className="profile-showcase">
+          <div className="profile-frame">
+            <div className="profile-halo" />
             <img
               src="/assets/krishna-profile-transparent.png"
               alt="Krishna, Website and Digital Solutions Developer"
-              className="max-h-[520px] w-auto max-w-full object-contain object-bottom drop-shadow-2xl transition duration-700 group-hover:scale-[1.03]"
+              className="profile-photo"
             />
-          </Reveal>
-        </div>
-        <div className="grid gap-5 sm:grid-cols-2">
-          {[
-            ['Studio-style execution', 'Modern responsive pages, support workflows, and reusable front-end patterns.'],
-            ['Business systems focus', 'SQL dashboards, portals, reporting flows, and small-business operational tooling.'],
-            ['Security aware', 'SSL/TLS, authentication, hosting access, SSH, firewalls, and careful maintenance habits.'],
-            ['Marketing friendly', 'SEO-ready page updates, WordPress content, social support, and stakeholder clarity.'],
-          ].map(([title, copy], index) => (
-            <Reveal key={title} delay={index * 90} className="rounded-md border border-slate-200 bg-cloud p-6">
-              <CheckCircle2 className="text-mint" size={24} />
-              <h3 className="mt-4 font-display text-lg font-extrabold text-ink">{title}</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-600">{copy}</p>
-            </Reveal>
-          ))}
-        </div>
+            <div className="profile-ribbon profile-ribbon-top">Web Developer</div>
+            <div className="profile-ribbon profile-ribbon-bottom">Client-ready support</div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -277,9 +284,9 @@ function Services() {
   return (
     <section id="services" className="bg-cloud py-24">
       <div className="section-shell">
-        <SectionHeading eyebrow="Services" title="A practical web desk for growing teams.">
-          From new landing pages to technical cleanup, I help teams keep their web presence sharper,
-          safer, and easier to operate.
+        <SectionHeading eyebrow="Services" title="Website execution for marketing teams, agencies, and small businesses.">
+          I can step into everyday website work: build the page, fix the issue, update the content,
+          check the mobile view, and explain what changed.
         </SectionHeading>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {services.map((service, index) => {
@@ -307,7 +314,7 @@ function Skills() {
   return (
     <section id="skills" className="bg-white py-24">
       <div className="section-shell">
-        <SectionHeading eyebrow="Skills" title="Full-stack range for websites, data, CMS, and hosting." />
+        <SectionHeading eyebrow="Skills" title="Practical range for CMS pages, front-end fixes, data, and hosting." />
         <div className="grid gap-5 lg:grid-cols-2">
           {skills.map((group, index) => (
             <Reveal key={group.category} delay={index * 80} className="rounded-md border border-slate-200 bg-cloud p-6">
@@ -330,11 +337,43 @@ function Skills() {
   );
 }
 
+function Tooling() {
+  return (
+    <section id="tools" className="bg-cloud py-24">
+      <div className="section-shell">
+        <SectionHeading eyebrow="CMS & workflow" title="WordPress builders, CMS tools, and support workflows I use on real website work.">
+          The goal is simple: keep pages accurate, campaigns moving, and technical issues from slowing down the team.
+        </SectionHeading>
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          {wordpressTools.map((tool, index) => (
+            <Reveal
+              key={tool.title}
+              delay={index * 80}
+              className="group flex min-h-[300px] flex-col rounded-md border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-2 hover:border-field/30 hover:shadow-card"
+            >
+              <div className="mb-5 h-1.5 w-16 rounded-full bg-mint transition group-hover:w-24" />
+              <h3 className="font-display text-xl font-extrabold text-ink">{tool.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-slate-600">{tool.copy}</p>
+              <div className="mt-auto flex flex-wrap gap-2 pt-6">
+                {tool.items.map((item) => (
+                  <span key={item} className="rounded-md bg-cloud px-3 py-1.5 text-xs font-bold text-field">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Experience() {
   return (
     <section id="experience" className="bg-ink py-24 text-white">
       <div className="section-shell">
-        <SectionHeading eyebrow="Experience" title="A timeline built across agencies, campuses, and business systems." dark>
+        <SectionHeading eyebrow="Experience" title="Website, CMS, data, and support experience across business environments." dark>
           Recent work spans website support, PHP and JavaScript applications, WordPress maintenance,
           reporting dashboards, CI/CD workflows, and stakeholder-facing digital support.
         </SectionHeading>
@@ -369,9 +408,9 @@ function Projects() {
   return (
     <section id="projects" className="bg-cloud py-24">
       <div className="section-shell">
-        <SectionHeading eyebrow="Projects" title="Selected work with practical business value.">
-          These projects reflect the kind of work I enjoy most: useful web systems that reduce
-          friction for staff, customers, and stakeholders.
+        <SectionHeading eyebrow="Strengths" title="Where I can be useful to a marketing or web team quickly.">
+          These are the habits I bring to website work: clear scope, steady updates, careful QA,
+          practical troubleshooting, and enough technical depth to support the system behind the page.
         </SectionHeading>
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {projects.map((project, index) => (
@@ -382,7 +421,7 @@ function Projects() {
             >
               <div className="mb-5 flex items-center justify-between">
                 <span className="rounded-md bg-field px-3 py-1 text-xs font-extrabold uppercase tracking-[0.16em] text-white">
-                  Project
+                  Strength
                 </span>
                 <ExternalLink className="text-slate-400 transition group-hover:text-coral" size={20} />
               </div>
@@ -396,9 +435,140 @@ function Projects() {
                 ))}
               </div>
               <div className="mt-auto pt-6">
-                <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-coral">Business value</p>
+                <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-coral">Why it matters</p>
                 <p className="mt-2 text-sm font-semibold leading-6 text-ink">{project.value}</p>
               </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ClientWorkflow() {
+  return (
+    <section className="bg-white py-24">
+      <div className="section-shell">
+        <SectionHeading eyebrow="Client process" title="How I turn requests into finished website work.">
+          I focus on understanding the real business need first, then turning that conversation into
+          clear website work, simple communication, and practical delivery.
+        </SectionHeading>
+        <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <Reveal className="relative overflow-hidden rounded-md border border-slate-200 bg-cloud p-6 shadow-card">
+            <div className="client-scene" aria-hidden="true">
+              <div className="client-chat client-chat-left">
+                <span>What do you need the site to do?</span>
+              </div>
+              <div className="client-chat client-chat-right">
+                <span>Bring in more local customers.</span>
+              </div>
+              <div className="client-laptop">
+                <div />
+                <span />
+                <span />
+                <span />
+              </div>
+              <div className="client-checklist">
+                <p>Plan</p>
+                <span>Pages</span>
+                <span>Content</span>
+                <span>Launch</span>
+              </div>
+            </div>
+          </Reveal>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {clientWorkflow.map((item, index) => (
+              <Reveal
+                key={item.title}
+                delay={index * 90}
+                className="rounded-md border border-slate-200 bg-cloud p-6 transition hover:-translate-y-2 hover:shadow-card"
+              >
+                <span className="text-sm font-extrabold text-coral">{item.step}</span>
+                <h3 className="mt-3 font-display text-lg font-extrabold text-ink">{item.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-600">{item.copy}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function WebsiteMockup({ variant, logo, image, title }) {
+  if (logo) {
+    return (
+      <div className={`website-mockup logo-only-preview logo-only-preview-${variant}`} aria-hidden="true">
+        <img src={logo} alt="" />
+      </div>
+    );
+  }
+
+  if (image) {
+    return (
+      <div className="website-mockup website-photo-preview" aria-hidden="true">
+        <img src={image} alt="" />
+        <div className="website-photo-label">{title}</div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={`website-mockup website-mockup-${variant}`} aria-hidden="true">
+      <div className="mockup-browser">
+        <div className="mockup-topbar">
+          <span />
+          <span />
+          <span />
+        </div>
+        <div className="mockup-viewport">
+          <div className="mockup-hero" />
+          <div className="mockup-line mockup-line-a" />
+          <div className="mockup-line mockup-line-b" />
+          <div className="mockup-grid">
+            <span />
+            <span />
+            <span />
+          </div>
+          <div className="mockup-orbit">
+            <i />
+            <i />
+            <i />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function FreelanceWebsites() {
+  return (
+    <section id="freelance" className="overflow-hidden bg-ink py-24 text-white">
+      <div className="section-shell">
+        <SectionHeading eyebrow="Portfolio links" title="Website References" dark />
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {freelanceWebsites.map((site, index) => (
+            <Reveal
+              key={site.title}
+              delay={index * 65}
+              className="freelance-card group rounded-md border border-white/10 bg-white/[0.07] p-4 backdrop-blur transition hover:-translate-y-2 hover:border-mint/70 hover:bg-white/[0.1]"
+            >
+              <WebsiteMockup variant={site.visual} logo={site.logo} image={site.image} title={site.title} />
+              {site.url ? (
+                <a
+                  href={site.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="focus-ring mt-4 inline-flex w-full items-center justify-center gap-2 rounded-md bg-white px-3 py-2 text-sm font-extrabold text-field transition hover:-translate-y-0.5 hover:bg-mint hover:text-ink"
+                >
+                  {site.title} <ExternalLink size={16} />
+                </a>
+              ) : (
+                <div className="mt-4 rounded-md border border-white/10 px-3 py-2 text-center text-sm font-extrabold text-white/60">
+                  {site.title}
+                </div>
+              )}
             </Reveal>
           ))}
         </div>
@@ -411,9 +581,9 @@ function Capabilities() {
   return (
     <section id="support" className="bg-white py-24">
       <div className="section-shell">
-        <SectionHeading eyebrow="Website support" title="How I Help Web & Marketing Teams" align="center">
-          I can plug into a team as the person who understands both the visible website and the
-          technical systems behind it.
+        <SectionHeading eyebrow="Website support" title="How I help web and marketing teams" align="center">
+          I can support the visible website, the CMS workflow, and the technical details behind forms,
+          content, hosting, reporting, and access.
         </SectionHeading>
         <Reveal className="mb-10 overflow-hidden rounded-md border border-slate-200 bg-cloud p-2 shadow-card">
           <img
@@ -464,9 +634,9 @@ function Contact() {
   return (
     <section id="contact" className="bg-cloud py-24">
       <div className="section-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-        <SectionHeading eyebrow="Contact" title="Let's build, fix, or improve the web system your team depends on.">
-          Available for web developer, website support, PHP developer, WordPress support, digital
-          solutions, small-business website support, and digital marketing support roles.
+        <SectionHeading eyebrow="Contact" title="Let's talk about the website work your team needs handled.">
+          Available for web developer, WordPress CMS support, PHP developer, website support,
+          small-business website maintenance, and digital marketing support roles.
         </SectionHeading>
         <div className="rounded-md border border-slate-200 bg-white p-6 shadow-card">
           <div className="grid gap-4">
@@ -513,7 +683,7 @@ function Footer() {
           <a href={`mailto:${contact.email}`} className="focus-ring rounded-md hover:text-white" aria-label="Email Krishna">
             <Mail size={20} />
           </a>
-          <a href="#projects" className="focus-ring rounded-md hover:text-white" aria-label="View projects">
+          <a href="#freelance" className="focus-ring rounded-md hover:text-white" aria-label="View website references">
             <Github size={20} />
           </a>
           <a href="#home" className="focus-ring rounded-md hover:text-white" aria-label="Back to top">
@@ -534,8 +704,11 @@ export default function App() {
         <About />
         <Services />
         <Skills />
+        <Tooling />
         <Experience />
+        <ClientWorkflow />
         <Projects />
+        <FreelanceWebsites />
         <Capabilities />
         <Resume />
         <Contact />
