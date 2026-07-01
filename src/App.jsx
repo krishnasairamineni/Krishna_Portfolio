@@ -45,6 +45,8 @@ const iconMap = {
   BriefcaseBusiness,
 };
 
+const assetPath = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
+
 function Reveal({ children, className = '', delay = 0 }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -188,7 +190,7 @@ function Hero() {
               View Website Work <ArrowRight size={18} />
             </a>
             <a
-              href="/Krishna_Web_Developer_Resume.pdf"
+              href={assetPath('/Krishna_Web_Developer_Resume.pdf')}
               download
               className="focus-ring action-button inline-flex items-center justify-center gap-2 rounded-md bg-white px-5 py-3 font-bold text-field shadow-card transition hover:-translate-y-1"
             >
@@ -209,7 +211,7 @@ function Hero() {
           <div className="relative mx-auto grid max-w-[560px] grid-cols-2 gap-4 sm:gap-5">
             <div className="shine-card group col-span-2 overflow-hidden rounded-md border border-white/80 bg-white/80 p-2 shadow-glow backdrop-blur">
               <img
-                src="/assets/digital-solutions-studio.png"
+                src={assetPath('/assets/digital-solutions-studio.png')}
                 alt="Digital solutions studio workspace with web dashboards and code interfaces"
                 className="h-56 w-full rounded object-cover transition duration-700 group-hover:scale-105 sm:h-64"
               />
@@ -267,7 +269,7 @@ function About() {
           <div className="profile-frame">
             <div className="profile-halo" />
             <img
-              src="/assets/krishna-profile-transparent.png"
+              src={assetPath('/assets/krishna-profile-transparent.png')}
               alt="Krishna, Website and Digital Solutions Developer"
               className="profile-photo"
             />
@@ -500,7 +502,7 @@ function WebsiteMockup({ variant, logo, image, title }) {
   if (logo) {
     return (
       <div className={`website-mockup logo-only-preview logo-only-preview-${variant}`} aria-hidden="true">
-        <img src={logo} alt="" />
+        <img src={assetPath(logo)} alt="" />
       </div>
     );
   }
@@ -508,7 +510,7 @@ function WebsiteMockup({ variant, logo, image, title }) {
   if (image) {
     return (
       <div className="website-mockup website-photo-preview" aria-hidden="true">
-        <img src={image} alt="" />
+        <img src={assetPath(image)} alt="" />
         <div className="website-photo-label">{title}</div>
       </div>
     );
@@ -587,7 +589,7 @@ function Capabilities() {
         </SectionHeading>
         <Reveal className="mb-10 overflow-hidden rounded-md border border-slate-200 bg-cloud p-2 shadow-card">
           <img
-            src="/assets/website-support-systems.png"
+            src={assetPath('/assets/website-support-systems.png')}
             alt="Website support systems with dashboards, responsive layouts, API connections, and secure web tools"
             className="h-72 w-full rounded object-cover sm:h-80 lg:h-96"
           />
@@ -619,7 +621,7 @@ function Resume() {
           </p>
         </div>
         <a
-          href="/Krishna_Web_Developer_Resume.pdf"
+          href={assetPath('/Krishna_Web_Developer_Resume.pdf')}
           download
           className="focus-ring action-button inline-flex items-center justify-center gap-2 rounded-md bg-white px-5 py-3 font-extrabold text-field shadow-card transition hover:-translate-y-1"
         >
